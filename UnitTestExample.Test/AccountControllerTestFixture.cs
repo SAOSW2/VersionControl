@@ -17,7 +17,17 @@ namespace UnitTestExample.Test
      TestCase("abcd1234", false),
      TestCase("irf@uni-corvinus", false),
      TestCase("irf.uni-corvinus.hu", false),
-     TestCase("irf@uni-corvinus.hu", true)
+     TestCase("irf@uni-corvinus.hu", true),
+
+
+           // A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot.
+
+            TestCase("Abcdefgh", false),
+     TestCase("ABCDEFGH", false),
+     TestCase("abcdefgh", false),
+     TestCase("Abcdef", false),
+            TestCase("Abcdefg1", true)
+
             ]
         public void TestValidateEmail(string email, bool expectedResult)
         {
