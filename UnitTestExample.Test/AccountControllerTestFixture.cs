@@ -20,7 +20,7 @@ namespace UnitTestExample.Test
      TestCase("irf@uni-corvinus.hu", true),
 
 
-           // A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot.
+            // A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot.
 
             TestCase("Abcdefgh", false),
      TestCase("ABCDEFGH", false),
@@ -34,6 +34,16 @@ namespace UnitTestExample.Test
             var accountController = new AccountController();
             var actualResult = accountController.ValidateEmail(email);
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        public void TestRegisterHappyPath(string email, string password)
+        {
+            var accountController = new AccountController();
+            var actualResult = accountController.Register(email, password);
+            Assert.AreEqual(email, actualResult.Email);
+            Assert.AreEqual(password, actualResult.Password);
+            Assert.AreNotEqual(Guid.Empty, actualResult.ID);
+
         }
     }
 }
